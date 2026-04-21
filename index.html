@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment — Apposite Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>/* emailjs loaded below */</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#d638a4;--peach:#f59794;--teal:#27a4aa;
+  --bg:#000000;--surface:#FFFFFF;--surface2:#F2F0EC;
+  --border:rgba(0,0,0,0.10);--border-md:rgba(0,0,0,0.20);
+  --text:#1B2A4A;--text2:#5A6478;--text3:#9AA0AD;
+  --green:#2d7a3a;--green-bg:#e6f4e8;--green-text:#1a5226;
+  --red:#b03030;--red-bg:#fce8e8;--red-text:#7a1f1f;
+  --amber:#a35c0a;--amber-bg:#fdf0dc;--amber-text:#7a4208;
+  --purple:#5b3fa8;--purple-bg:#ede9fb;--purple-text:#3b2580;
+  --r:12px;--rs:8px;--font:'Montserrat',sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem 5rem}
+.shell{width:100%;max-width:700px}
+.brand{display:flex;align-items:center;margin-bottom:1.75rem}
+.brand-logo{height:40px;width:auto;display:block}
+.card{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r);padding:2rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(27,42,74,0.06)}
+.screen{display:none}.screen.active{display:block}
+.screen#screen-intro{display:block}
+.intro-title{font-size:30px;font-weight:700;color:#1B2A4A;line-height:1.2;margin-bottom:1.75rem;letter-spacing:-.01em}
+.meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.75rem}
+.meta-tile{background:#FFFFFF;border-radius:var(--rs);padding:12px 14px;border:.5px solid var(--border-md)}
+.meta-lbl{font-size:10px;font-weight:600;color:#000;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.meta-val{font-size:17px;font-weight:700;color:#000}
+.rules{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:1.75rem;padding-left:0}
+.rules li{margin-bottom:.2rem}
+.field{margin-bottom:1.25rem}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.field input{width:100%;padding:11px 14px;font-size:14px;font-family:var(--font);border:.5px solid var(--border-md);border-radius:var(--rs);background:var(--surface);color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s}
+.field input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(214,56,164,0.12)}
+.field input.err{border-color:var(--red)}
+.test-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.q-num{font-size:12px;font-weight:500;color:var(--text2)}
+.q-type-badge{font-size:10px;font-weight:600;border-radius:20px;padding:3px 9px;letter-spacing:.04em;text-transform:uppercase}
+.badge-single{color:#0f4e96;background:#deeafa}
+.badge-multi{color:#5b3fa8;background:#ede9fb}
+.badge-open{color:#1a7a7e;background:#d4f0f1}
+.badge-upload{color:#a35c0a;background:#fdf0dc}
+.timer{font-size:14px;font-weight:600;color:var(--text2);min-width:52px;text-align:right;font-variant-numeric:tabular-nums}
+.timer.warn{color:var(--amber)}.timer.danger{color:var(--red)}
+.progress-track{height:3px;background:var(--surface2);border-radius:2px;margin-bottom:1.75rem;overflow:hidden}
+.progress-fill{height:3px;background:linear-gradient(90deg,var(--pink),var(--peach),var(--teal));border-radius:2px;transition:width .35s}
+.q-context{font-size:13px;color:var(--text2);background:#f0f8f8;border-left:3px solid var(--teal);padding:10px 14px;border-radius:0 var(--rs) var(--rs) 0;margin-bottom:1.1rem;line-height:1.65}
+.q-text{font-size:16px;font-weight:600;color:#1B2A4A;line-height:1.55;margin-bottom:1.25rem}
+.q-hint{font-size:12px;color:var(--text3);margin-bottom:1rem;font-style:italic}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:.5px solid var(--border);border-radius:var(--rs);cursor:pointer;margin-bottom:8px;transition:background .12s,border-color .12s;user-select:none}
+.opt:hover:not(.locked){background:#fdf0f9;border-color:rgba(214,56,164,0.35)}
+.opt.selected{background:#fdf0f9;border-color:var(--pink)}
+.opt-dot{min-width:22px;height:22px;border-radius:50%;border:.5px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text3);flex-shrink:0;margin-top:1px;transition:background .12s,color .12s,border-color .12s}
+.opt.selected .opt-dot{background:var(--pink);border-color:var(--pink);color:#fff}
+.opt.multi-selected .opt-dot{background:var(--teal);border-color:var(--teal);color:#fff}
+.opt.multi-selected{background:#e8f7f8;border-color:var(--teal)}
+.opt-text{font-size:14px;color:var(--text);line-height:1.5}
+.open-textarea{width:100%;min-height:120px;padding:12px 14px;font-size:14px;font-family:var(--font);border:.5px solid var(--border-md);border-radius:var(--rs);background:var(--surface);color:var(--text);outline:none;resize:vertical;transition:border-color .15s,box-shadow .15s;line-height:1.6}
+.open-textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(39,164,170,0.12)}
+.upload-area{border:2px dashed var(--border-md);border-radius:var(--rs);padding:2rem;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;background:var(--surface2)}
+.upload-area:hover{border-color:var(--teal);background:#f0f8f8}
+.upload-area.has-file{border-color:var(--green);background:#e6f4e8}
+.upload-icon{font-size:28px;margin-bottom:.5rem}
+.upload-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.upload-sub{font-size:12px;color:var(--text2)}
+.upload-filename{font-size:13px;font-weight:600;color:var(--green);margin-top:.5rem}
+.upload-input{display:none}
+.upload-scenario{background:#fffbe6;border:.5px solid #f0d060;border-radius:var(--rs);padding:12px 14px;margin-bottom:1rem;font-size:13px;color:#5a4200;line-height:1.65}
+.upload-scenario strong{display:block;margin-bottom:4px;font-weight:600}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem}
+.skip-note{font-size:11px;color:var(--text3);font-style:italic}
+.btn{padding:11px 28px;font-size:14px;font-weight:600;font-family:var(--font);background:#27a4aa;color:#fff;border:none;border-radius:var(--rs);cursor:pointer;letter-spacing:.01em;transition:background .15s,transform .1s}
+.btn:hover{background:#1f8a8f}.btn:active{transform:scale(.98)}
+.btn:disabled{background:#ccc;cursor:not-allowed;transform:none;opacity:1}
+.btn-full{width:100%;padding:13px 28px;font-size:15px}
+.done-icon{font-size:48px;text-align:center;margin-bottom:1rem}
+.done-name{font-size:20px;font-weight:700;color:#1B2A4A;text-align:center;margin-bottom:.25rem}
+.done-title{font-size:18px;font-weight:500;color:#1B2A4A;text-align:center;margin-bottom:.75rem}
+.done-msg{font-size:14px;color:var(--text2);text-align:center;line-height:1.75;margin-bottom:1.5rem}
+.done-divider{height:.5px;background:var(--border);margin:1.25rem 0}
+.done-footer{font-size:12px;color:var(--text3);text-align:center}
+.email-note{font-size:12px;text-align:center;padding:8px 12px;border-radius:var(--rs);margin-top:10px;display:none}
+.email-note.sending{display:block;background:#e8f7f8;color:#1a5c5e}
+.email-note.sent{display:block;background:var(--green-bg);color:var(--green-text)}
+.email-note.failed{display:block;background:var(--amber-bg);color:var(--amber-text)}
+.blocked-icon{font-size:40px;text-align:center;margin-bottom:1rem}
+.blocked-title{font-size:20px;font-weight:600;color:#1B2A4A;text-align:center;margin-bottom:.75rem}
+.blocked-msg{font-size:14px;color:var(--text2);text-align:center;line-height:1.7}
+.footer{text-align:center;margin-top:2rem;font-size:12px;color:#555}
+@media(max-width:480px){.meta-grid{grid-template-columns:1fr 1fr}.card{padding:1.25rem}.intro-title{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="brand">
+    <img class="brand-logo" src="data:image/png;base64,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" alt="Apposite Learning" />
+  </div>
+
+  <!-- BLOCKED -->
+  <div class="screen" id="screen-blocked">
+    <div class="card">
+      <div class="blocked-icon">🔒</div>
+      <p class="blocked-title">Assessment already completed</p>
+      <p class="blocked-msg">Our records show this assessment has already been submitted from this device.<br><br>Each candidate is permitted one attempt only. If you believe this is an error, please contact the Apposite Learning HR team directly.</p>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="screen" id="screen-intro">
+    <div class="card">
+      <h1 class="intro-title">Assessment</h1>
+      <div class="meta-grid">
+        <div class="meta-tile"><div class="meta-lbl">Questions</div><div class="meta-val">25</div></div>
+        <div class="meta-tile"><div class="meta-lbl">Time limit</div><div class="meta-val">40 min</div></div>
+        <div class="meta-tile"><div class="meta-lbl">Attempts</div><div class="meta-val">1 only</div></div>
+        <div class="meta-tile"><div class="meta-lbl">Format</div><div class="meta-val">Mixed</div></div>
+      </div>
+      <ul class="rules">
+        <li>Select the single best answer for single-choice questions.</li>
+        <li>For multi-select questions, choose <strong>all</strong> answers that apply.</li>
+        <li>For open-ended questions, type your response in the box provided.</li>
+        <li>One question will ask you to upload a project planning document.</li>
+        <li>You have <strong>40 minutes</strong>. The timer starts when you click Start Assessment.</li>
+      </ul>
+      <div class="field">
+        <label for="inp-name">Full name</label>
+        <input type="text" id="inp-name" placeholder="" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="inp-email">Email address</label>
+        <input type="email" id="inp-email" placeholder="" autocomplete="email" />
+      </div>
+      <button class="btn btn-full" id="start-btn" onclick="startAssessment()">Start Assessment</button>
+    </div>
+  </div>
+
+  <!-- TEST -->
+  <div class="screen" id="screen-test">
+    <div class="card">
+      <div class="test-hdr">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="q-num" id="q-counter">Question 1 of 25</span>
+          <span class="q-type-badge" id="q-type-badge"></span>
+        </div>
+        <span class="timer" id="timer-el">40:00</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:4%"></div></div>
+      <div id="q-context-wrap"></div>
+      <p class="q-text" id="q-text"></p>
+      <p class="q-hint" id="q-hint"></p>
+      <div id="options-wrap"></div>
+      <div class="nav-row">
+        <span class="skip-note" id="skip-note"></span>
+        <button class="btn" id="next-btn" onclick="nextQ()" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div class="screen" id="screen-done">
+    <div class="card">
+      <div class="done-icon">✅</div>
+      <p class="done-name" id="done-name">–</p>
+      <p class="done-title">Thank you for completing the assessment.</p>
+      <p class="done-msg">The HR team will review your assessment scores and get back to you shortly.<br>We appreciate the time and effort you have put into this process.</p>
+      <div class="done-divider"></div>
+      <p class="done-footer">Apposite Learning · HR Team · assessment@apposite.com</p>
+      <div class="email-note" id="email-note"></div>
+    </div>
+  </div>
+
+  <div class="footer">Apposite Learning</div>
+</div>
+
+<script>
+/* ── EmailJS Config ─────────────────────────────────── */
+const EJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const RECRUITER_EMAIL = 'hr@apposite.com';
+
+/* ── Question Bank ──────────────────────────────────────────────────
+   type: 'single' | 'multi' | 'open' | 'upload'
+   single: opts[], correct (index)
+   multi:  opts[], correct (array of indices) — score only if ALL correct selected
+   open:   no opts, no correct — text captured for recruiter
+   upload: no opts — file captured and sent via email
+─────────────────────────────────────────────────────────────────── */
+const BANK = {
+
+/* ── PM SKILLS — single select (20 questions) ── */
+skill_single: [
+{type:'single',q:'A client requests a new feature mid-sprint that was not in the original scope. What is the correct first step?',opts:['Add it to the current sprint immediately','Log a Change Request, assess impact on scope, timeline and cost, and present options to the stakeholder','Ask the team to absorb it quietly','Reject the request and refer the client to the SOW'],correct:1},
+{type:'single',q:'Your sprint velocity has dropped 30% over three sprints with no change in team size. What should you investigate first?',opts:['Whether the team needs salary increases','Scope creep, unplanned work, or growing technical debt entering each sprint','Whether the product owner is available enough','Whether the office environment has changed'],correct:1},
+{type:'single',q:'A key external dependency is 1 week late, putting go-live at risk. What do you do immediately?',opts:['Wait and see if it resolves itself','Update the RAID log, inform stakeholders, quantify the impact, and present a revised plan with mitigation options','Tell the client the vendor is responsible','Extend the sprint without telling anyone'],correct:1},
+{type:'single',q:'Which of the following best describes the difference between a risk and an issue?',opts:['They are the same thing','A risk is a potential future problem; an issue is a problem that has already occurred','A risk is always negative; an issue can be positive','Issues are logged in the RAID log; risks are not'],correct:1},
+{type:'single',q:'What is the purpose of a project charter?',opts:['To list all project tasks','To formally authorise the project and define its objectives, scope, stakeholders, and PM authority','To track sprint velocity','To document bugs found in QA'],correct:1},
+{type:'single',q:'In Agile, who is responsible for prioritising the product backlog?',opts:['The Project Manager','The Scrum Master','The Product Owner','The development team collectively'],correct:2},
+{type:'single',q:'What does MoSCoW stand for in requirements prioritisation?',opts:['Must, Should, Could, Would not','Must have, Should have, Could have, Won't have this time','Mandatory, Secondary, Conditional, Optional','Main, Supporting, Contextual, Wishlist'],correct:1},
+{type:'single',q:'Which of the following is NOT a typical output of sprint planning?',opts:['Sprint goal','Sprint backlog','Committed user stories with acceptance criteria','Project closure report'],correct:3},
+{type:'single',q:'What does "Definition of Done" mean in Scrum?',opts:['A list of all project deliverables','A shared, agreed checklist that defines when a user story is considered complete','The criteria for closing a project','The acceptance criteria for a specific user story'],correct:1},
+{type:'single',q:'Which metric best indicates whether a project is delivering value at the expected rate?',opts:['Number of bugs logged','Cost Performance Index (CPI) from Earned Value Management','Number of stories completed per sprint','Client satisfaction score'],correct:1},
+{type:'single',q:'Which of the following best describes "scope creep"?',opts:['A deliberate expansion approved by the sponsor','The gradual, uncontrolled addition of features or work beyond the original agreed scope','A change in the project timeline','A risk that has been escalated'],correct:1},
+{type:'single',q:'What is the role of the Scrum Master versus the Project Manager?',opts:['They are the same role','The Scrum Master facilitates the Agile process and removes impediments; the PM owns delivery outcomes, stakeholder management, and budget/timeline accountability','The PM writes user stories; the Scrum Master manages stakeholders','The Scrum Master has more authority than the PM'],correct:1},
+{type:'single',q:'A project sponsor stops attending steering committee meetings. What risk does this create?',opts:['No risk — steering committees are optional','Reduced organisational support, slower escalation resolution, and risk of strategic misalignment','The project can continue normally','Only the PM is affected'],correct:1},
+{type:'single',q:'What is the primary purpose of a lessons learned session at project close?',opts:['To identify who made mistakes','To document what went well and what could be improved to inform future projects','To finalise invoicing','To close all open JIRA tickets'],correct:1},
+{type:'single',q:'What is the difference between an epic and a user story in Agile?',opts:['They are the same — just different names','An epic is a large body of work that can be broken down into multiple user stories','A user story is always written by the PM; an epic by the product owner','Epics are used only in Waterfall'],correct:1},
+{type:'single',q:'In a Kanban workflow, what does a WIP limit do?',opts:['Prevents the team from taking on too many tasks simultaneously, improving flow and quality','Tracks how many stories are in the backlog','Is a reporting metric only','Determines how many people are on the team'],correct:0},
+{type:'single',q:'A project is 40% complete and 20% over budget. What is the most important immediate action?',opts:['Reduce team size to cut costs','Perform an Earned Value Analysis, identify the root cause, and present a recovery plan to stakeholders','Continue and hope to recover later','Ask the client for more budget without analysis'],correct:1},
+{type:'single',q:'What is the main purpose of a RACI matrix?',opts:['To track project risks','To clarify who is Responsible, Accountable, Consulted, and Informed for each task','To document the project budget','To manage the sprint backlog'],correct:1},
+{type:'single',q:'A QA engineer identifies a critical bug 2 days before go-live. What do you do?',opts:['Go live anyway and patch it later','Assess severity, decide whether to delay go-live, inform stakeholders, and document the decision with rationale','Fix it yourself without telling the client','Cancel the project'],correct:1},
+{type:'single',q:'You discover mid-project that a regulatory requirement was missed during scoping. What do you do?',opts:['Ignore it and hope no one notices','Add it silently to the backlog','Log it as a risk/issue, assess the impact, and raise it transparently with the client and stakeholders immediately','Blame the scoping team'],correct:2},
+],
+
+/* ── PM SKILLS — multi select (8 questions) ── */
+skill_multi: [
+{type:'multi',q:'Which of the following are valid inputs to sprint planning?',opts:['Product backlog','Team capacity and velocity','A project charter','Definition of Done','The company org chart'],correct:[0,1,3]},
+{type:'multi',q:'Which of the following are typical contents of a RAID log?',opts:['Risks','Assumptions','Issues','Dependencies','Sprint velocity'],correct:[0,1,2,3]},
+{type:'multi',q:'A project is running behind schedule. Which of the following are legitimate recovery options a PM should consider?',opts:['Reduce scope with sponsor approval','Add resources to critical path tasks','Extend the deadline with stakeholder agreement','Remove QA entirely to save time','Re-sequence tasks to increase parallelism'],correct:[0,1,2,4]},
+{type:'multi',q:'Which of the following are responsibilities of a Project Manager in an Agile delivery?',opts:['Writing code for the team','Stakeholder management and communication','Managing risks and dependencies','Facilitating sprint ceremonies','Removing blockers and escalating impediments'],correct:[1,2,3,4]},
+{type:'multi',q:'Which of the following should be included in a weekly project status report?',opts:['RAG status','Key milestones completed this week','Risks and issues update','Detailed code review notes','Actions and owners for next week'],correct:[0,1,2,4]},
+{type:'multi',q:'Which of the following are signs that a project is at risk of scope creep?',opts:['Stakeholders regularly request additions outside the agreed SOW','The backlog grows significantly between sprints without formal review','The team delivers ahead of schedule','Requirements keep changing after sign-off','The client never attends steering meetings'],correct:[0,1,3]},
+{type:'multi',q:'Which of the following are characteristics of a well-written user story?',opts:['It follows the As a / I want / So that format','It includes clear acceptance criteria','It is written by the development team','It is small enough to complete within a sprint','It references business value'],correct:[0,1,3,4]},
+{type:'multi',q:'Which of the following actions should a PM take when onboarding a new team member mid-project?',opts:['Brief them on project goals, current status, their role, and key stakeholders','Assign them the most urgent task immediately without context','Share relevant project documentation','Introduce them to key stakeholders','Leave them to read through the Jira board on their own'],correct:[0,2,3]},
+],
+
+/* ── PERSONALITY — single select (15 questions) ── */
+personality_single: [
+{type:'single',q:'You disagree with a decision made by your line manager that you believe will negatively impact the project. What do you do?',opts:['Say nothing — managers are always right','Complain to colleagues','Request a private meeting, present your concerns with evidence, and accept the outcome if they maintain their position','Ignore the decision and proceed your own way'],correct:2},
+{type:'single',q:'You are given a task with a tight deadline and unclear instructions. What is your first instinct?',opts:['Wait for clearer instructions before starting','Start working without telling anyone','Clarify key ambiguities upfront, agree on a minimum viable output, and begin immediately','Ask to be removed from the task'],correct:2},
+{type:'single',q:'You have made a significant error that has delayed the timeline by one week. What do you do?',opts:['Try to recover silently before anyone notices','Inform stakeholders immediately, explain what happened, and present a recovery plan','Blame the delay on the development team','Minimise the error in your status report'],correct:1},
+{type:'single',q:'You are asked to take on more work than you can reasonably deliver. What is the most professional response?',opts:['Accept everything and work extra hours indefinitely','Refuse all additional work','Accept, prioritise clearly with your manager, and flag which existing commitments will be affected','Do as much as you can without telling anyone what gets dropped'],correct:2},
+{type:'single',q:'You receive critical feedback on work you are proud of. What is your reaction?',opts:['Defend the work and explain why the feedback is wrong','Feel discouraged and avoid sharing work in future','Thank the person, separate the emotional reaction from the content, identify what is valid, and use it to improve','Agree with everything even if you disagree'],correct:2},
+{type:'single',q:'You are presenting a project update to senior leadership and the news is mostly bad. How do you prepare?',opts:['Spin the narrative to make things sound better','Only present the positive aspects','Present the facts clearly, explain root causes, and arrive with a concrete recovery plan and recommended next steps','Let someone else present to avoid being associated with bad news'],correct:2},
+{type:'single',q:'How do you handle a situation where you do not know the answer to a question from a senior stakeholder?',opts:['Make something up that sounds plausible','Avoid the question','Acknowledge you do not have the answer right now, commit to finding out, and follow up within a specific timeframe','Deflect to a team member'],correct:2},
+{type:'single',q:'Two team members have a personal conflict affecting team productivity. What do you do?',opts:['Ignore it — personal issues are not a PM's concern','Wait until it becomes a formal complaint','Meet with each person individually, then mediate a structured conversation focused on professional behaviour and project impact','Take sides with the more senior person'],correct:2},
+{type:'single',q:'A colleague takes credit for an idea you proposed. How do you handle this?',opts:['Publicly call them out in the next meeting','Say nothing and let it pass','Address it calmly and privately, clarifying your contribution','Complain to HR immediately'],correct:2},
+{type:'single',q:'You are managing two projects and realise you cannot do both well. What do you do?',opts:['Try to manage both and deliver mediocre results','Drop the lower-priority one without telling anyone','Have an honest conversation with your manager about capacity and ask for a prioritisation decision','Ask a junior colleague to manage one without formally delegating'],correct:2},
+{type:'single',q:'A team member is visibly struggling with their workload but has not asked for help. What do you do?',opts:['Wait until they ask','Call them out in the team standup','Have a private, supportive conversation to check in and explore solutions together','Reduce their responsibilities without discussing it with them'],correct:2},
+{type:'single',q:'How do you build trust with a new team you have just started managing?',opts:['Assert authority immediately so the team knows who is in charge','Befriend everyone socially before addressing professional issues','Listen more than you talk initially, follow through on every commitment, be transparent about your limitations, and demonstrate consistent fairness','Implement new processes immediately to show you are taking charge'],correct:2},
+{type:'single',q:'You strongly disagree with a project direction but have been overruled by the sponsor. What do you do?',opts:['Sabotage the direction subtly','Continue arguing your point at every opportunity','Document your concern formally, then commit fully to delivering the agreed direction to the best of your ability','Resign from the project'],correct:2},
+{type:'single',q:'When faced with a task you have never done before, what is your typical approach?',opts:['Avoid it until forced','Attempt it without any preparation','Research what is involved, identify who has relevant experience, plan carefully, and proceed with appropriate checkpoints','Delegate it without trying'],correct:2},
+{type:'single',q:'A client is being unreasonably demanding and behaving rudely toward your team. How do you respond?',opts:['Match their energy','Let the team deal with it directly','Address it professionally and privately with the client, set clear expectations around respectful communication, and escalate if the behaviour continues','Apologise on behalf of your team and absorb the behaviour'],correct:2},
+],
+
+/* ── PERSONALITY — multi select (6 questions) ── */
+personality_multi: [
+{type:'multi',q:'Which of the following are effective ways to manage competing priorities from different stakeholders?',opts:['Do whatever the most senior person asks','Facilitate a structured prioritisation conversation that makes trade-offs explicit','Gain alignment and document the agreed priority order','Address requests in the order they were received','Involve the project sponsor when alignment cannot be reached'],correct:[1,2,4]},
+{type:'multi',q:'Which of the following demonstrate strong ownership as a PM?',opts:['Escalating every decision to your manager','Proactively flagging risks before they become issues','Following through on commitments even when inconvenient','Waiting to be asked before acting on a problem','Being transparent about challenges even when the news is bad'],correct:[1,2,4]},
+{type:'multi',q:'Which of the following are signs of low psychological safety in a team?',opts:['Team members always agree with each other in meetings','No issues are ever raised in retrospectives','The team openly discusses mistakes and learns from them','Team members avoid sharing concerns about the project approach','People speak up freely with new ideas'],correct:[0,1,3]},
+{type:'multi',q:'Which of the following are effective ways to give feedback to an underperforming team member?',opts:['Raise it publicly in the next team meeting','Address it privately and focus on specific observed behaviours','Set clear expectations and agree on measurable improvement goals','Ignore it and hope it improves on its own','Offer support and check in regularly on progress'],correct:[1,2,4]},
+{type:'multi',q:'Which of the following reflect good communication practices for a PM?',opts:['Communicate proactively, even when the news is incomplete','Wait until all information is available before communicating','Tailor the message to the audience — technical detail for engineers, business impact for stakeholders','Send the same update to all groups regardless of their needs','Document decisions in writing so there is a clear record'],correct:[0,2,4]},
+{type:'multi',q:'Which of the following are healthy responses when a project is not going well despite your best efforts?',opts:['Conduct an honest self-assessment of what can be improved','Seek input from the team on root causes','Adjust the approach based on what you learn','Pretend everything is fine to protect your reputation','Escalate to leadership with a clear picture and a recommendation'],correct:[0,1,2,4]},
+],
+
+/* ── OPEN ENDED — situational thinking (20 questions, max 5 per assessment) ── */
+open: [
+{type:'open',q:'You have just taken over a project that is 6 weeks in. The team is demotivated, the client is unhappy, and there is no clear project plan. Walk us through the first 10 days of your approach.',hint:'There is no single right answer. We are looking for your thinking process, priorities, and how you would structure your approach.'},
+{type:'open',q:'A client calls you on a Friday afternoon to say they are unhappy with the project and are considering ending the contract. You have no prior warning. Describe how you would handle the next 48 hours.',hint:'Consider immediate actions, communication, and your plan to stabilise the situation.'},
+{type:'open',q:'You are managing a cross-functional team of 12 people across development, QA, design, and content. Three team members are consistently missing sprint commitments but all give plausible reasons. How do you diagnose and address this?',hint:'Think about what information you would gather, how you would approach each person, and what process changes you might introduce.'},
+{type:'open',q:'Your project has three weeks to go-live. A critical integration with a third-party API fails in UAT and the vendor says it will take 2 weeks to fix — leaving you with only 1 week before go-live. What do you do?',hint:'Consider your options, how you communicate with stakeholders, and how you make a recommendation.'},
+{type:'open',q:'A senior stakeholder keeps expanding the project scope in steering meetings, framing additions as "small" and "obvious". The team is frustrated. How do you handle this without damaging the relationship?',hint:'Think about both the immediate conversation and the process change you would put in place.'},
+{type:'open',q:'You are asked to create a project plan for a 4-month software build with a team of 6. The requirements are still being finalised. How do you approach planning under uncertainty, and what does your plan look like?',hint:'Describe your planning methodology, what you would include, and how you would handle the unknowns.'},
+{type:'open',q:'Two of your best developers want to completely redesign a core module 2 weeks before launch because they believe the current approach has long-term technical debt. How do you evaluate this and make a decision?',hint:'There is no definitive right answer — we want to see how you weigh technical risk against delivery risk.'},
+{type:'open',q:'Describe a time you had to deliver difficult news to a client or senior stakeholder. How did you prepare, what did you say, and what was the outcome?',hint:'This can be a real or hypothetical situation. We are looking for your communication approach and self-awareness.'},
+{type:'open',q:'You join a new organisation and discover the project delivery process is inconsistent — different PMs do things very differently with no standards. You are asked to improve this. What do you do, and how do you bring the team along?',hint:'Think about how you would assess the current state, what you would standardise, and how you would manage change.'},
+{type:'open',q:'Your project has a hard deadline set by an external regulatory body. Two weeks before the deadline, you realise you will miss it by approximately 5 days. What are your options, and what do you recommend?',hint:'Walk us through your options analysis and how you would present your recommendation to leadership.'},
+{type:'open',q:'Describe how you would set up governance for a 6-month project with 4 internal workstreams and 2 external vendors. What meetings would you run, what reports would you produce, and how would you manage escalations?',hint:'We are looking for your practical governance approach — not a textbook answer.'},
+{type:'open',q:'A key team member who owns a critical module resigns with 2 weeks notice and there is no documentation. How do you manage this risk and protect the project?',hint:'Think through the immediate actions, knowledge transfer, and how you communicate the risk to stakeholders.'},
+{type:'open',q:'You are leading the delivery of a new LMS platform for a 5,000-user organisation. The client has strong opinions about the UI but the development team believes their requests are technically unworkable. How do you broker this?',hint:'Consider how you facilitate the conversation, what trade-offs you explore, and how you reach a resolution.'},
+{type:'open',q:'Halfway through a project, your organisation announces a company-wide freeze on spending. Your project budget is reduced by 20%. How do you respond?',hint:'Walk us through how you assess the impact, what you cut, how you communicate, and what you negotiate.'},
+{type:'open',q:'A junior PM on your team consistently produces status reports that are technically accurate but fail to communicate risk or urgency to leadership. How do you coach them?',hint:'We are looking for your approach to developing others — what specific guidance would you give, and how would you follow up?'},
+{type:'open',q:'You are running a retrospective at the end of a difficult sprint. The team is frustrated and there is blame in the air. How do you facilitate this session productively?',hint:'Describe your facilitation approach, what ground rules you set, and how you convert frustration into actionable improvement.'},
+{type:'open',q:'Your client says they want the project delivered using Waterfall but your team's strength is Agile. How do you navigate this, and what delivery approach do you propose?',hint:'Think about how you educate the client, what hybrid options exist, and how you build confidence in your recommendation.'},
+{type:'open',q:'You are managing a project for a client in a highly regulated industry. A developer wants to take a shortcut that would speed up delivery by 2 weeks but creates a compliance gap. How do you handle this?',hint:'Consider the risk, the conversation you have with the developer, and how you communicate with the client.'},
+{type:'open',q:'Your team tells you in a retrospective that they feel micromanaged. You believe you have been appropriately involved. How do you respond to this feedback?',hint:'We are looking for self-awareness and a constructive approach — not defensiveness or dismissiveness.'},
+{type:'open',q:'You have been asked to estimate the timeline for a complex 12-month programme that has never been done before in your organisation. How do you approach this, and what does your estimate look like?',hint:'Describe your estimation methodology, the assumptions you would make, and how you would communicate uncertainty.'},
+],
+
+/* ── FILE UPLOAD — project planning (pool of 2, 1 drawn per assessment) ── */
+upload: [
+{type:'upload',
+ scenario:'You have been appointed as the Project Manager for a company rolling out a new Learning Management System (LMS) to 3,000 employees across 5 departments. The project involves vendor selection, platform configuration, content migration, user training, and go-live. The project must be completed within 6 months with a team of 6 people.',
+ q:'Create a Work Breakdown Structure (WBS) for this LMS rollout project. Your WBS should include: all major phases and deliverables, key milestones with target dates, effort estimates per task or workstream (in days or hours), and task ownership or resource type. Submit your plan as an Excel spreadsheet (.xlsx) or a clearly structured document.',
+ hint:'Think like a real PM. We are looking for logical phasing, realistic effort estimates, clear milestones, and evidence that you understand the dependencies involved in a project of this nature.'},
+{type:'upload',
+ scenario:'A financial services company has commissioned a 5-month custom software development project to build an internal employee performance management platform. The platform includes a goal-setting module, a 360-degree feedback tool, and a manager dashboard. The team consists of 2 frontend developers, 1 backend developer, 1 QA engineer, and 1 UX designer.',
+ q:'Create a Work Breakdown Structure (WBS) for this software development project. Your WBS should include: all major phases and deliverables, key milestones with target dates (sprint-level or phase-level), effort estimates per task or workstream, and resource assignments. Submit your plan as an Excel spreadsheet (.xlsx) or a clearly structured document.',
+ hint:'We are looking for an Agile or hybrid delivery structure with realistic sprint planning, clear milestones such as design sign-off, build completion, UAT entry and go-live, and effort estimates that reflect the team composition.'},
+]
+
+}; /* end BANK */
+
+/* ── Config ── */
+const ATTEMPT_KEY = 'apposite_pm_attempt_v3';
+const TIME_LIMIT_SECS = 40 * 60;
+const LETTERS = ['A','B','C','D','E'];
+
+/* ── State ── */
+let selectedQs = [], cur = 0, answers = [], timerRef = null;
+let secsLeft = TIME_LIMIT_SECS, startMs = 0;
+let candidateName = '', candidateEmail = '';
+let uploadedFiles = {}; // index → {name, dataUrl}
+
+/* ── Init ── */
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem(ATTEMPT_KEY)) {
+    document.getElementById('screen-intro').style.display = 'none';
+    show('screen-blocked');
+  } else {
+    document.getElementById('screen-intro').classList.add('active');
+  }
+  ['inp-name','inp-email'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', function(){ this.classList.remove('err'); });
+  });
+});
+
+/* ── Helpers ── */
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+/* ── Pick questions ──
+   Draw: 8 skill_single, 4 skill_multi, 6 personality_single, 2 personality_multi, 4 open, 1 upload = 25
+── */
+function pickQuestions() {
+  const ss = shuffle(BANK.skill_single).slice(0,8);
+  const sm = shuffle(BANK.skill_multi).slice(0,4);
+  const ps = shuffle(BANK.personality_single).slice(0,6);
+  const pm = shuffle(BANK.personality_multi).slice(0,2);
+  const op = shuffle(BANK.open).slice(0,4);
+  const up = shuffle(BANK.upload).slice(0,1);
+  return shuffle([...ss,...sm,...ps,...pm,...op,...up]);
+}
+
+/* ── Start ── */
+function startAssessment() {
+  const nameEl = document.getElementById('inp-name');
+  const emailEl = document.getElementById('inp-email');
+  let valid = true;
+  if (!nameEl.value.trim()) { nameEl.classList.add('err'); valid = false; }
+  if (!emailEl.value.trim() || !emailEl.value.includes('@')) { emailEl.classList.add('err'); valid = false; }
+  if (!valid) return;
+  candidateName = nameEl.value.trim();
+  candidateEmail = emailEl.value.trim();
+  localStorage.setItem(ATTEMPT_KEY, JSON.stringify({ name: candidateName, email: candidateEmail, startedAt: new Date().toISOString() }));
+  selectedQs = pickQuestions();
+  answers = new Array(selectedQs.length).fill(undefined);
+  cur = 0; secsLeft = TIME_LIMIT_SECS; startMs = Date.now();
+  show('screen-test');
+  renderQ();
+  timerRef = setInterval(tick, 1000);
+}
+
+/* ── Timer ── */
+function tick() {
+  secsLeft--;
+  const m = Math.floor(secsLeft/60), s = secsLeft%60;
+  const el = document.getElementById('timer-el');
+  el.textContent = m + ':' + (s<10?'0':'') + s;
+  el.className = 'timer' + (secsLeft<=60?' danger':secsLeft<=300?' warn':'');
+  if (secsLeft <= 0) { clearInterval(timerRef); finalise(); }
+}
+
+/* ── Render question ── */
+function renderQ() {
+  const q = selectedQs[cur];
+  const total = selectedQs.length;
+  document.getElementById('q-counter').textContent = 'Question ' + (cur+1) + ' of ' + total;
+  document.getElementById('progress-fill').style.width = ((cur+1)/total*100) + '%';
+
+  // Type badge
+  const badge = document.getElementById('q-type-badge');
+  const typeMap = { single:['Single choice','badge-single'], multi:['Multi-select','badge-multi'], open:['Open ended','badge-open'], upload:['File upload','badge-upload'] };
+  badge.textContent = typeMap[q.type][0];
+  badge.className = 'q-type-badge ' + typeMap[q.type][1];
+
+  // Context
+  const ctx = document.getElementById('q-context-wrap');
+  if (q.context) ctx.innerHTML = '<div class="q-context">' + q.context + '</div>';
+  else if (q.type === 'upload') ctx.innerHTML = '<div class="upload-scenario"><strong>Project Scenario</strong>' + q.scenario + '</div>';
+  else ctx.innerHTML = '';
+
+  // Question text
+  document.getElementById('q-text').textContent = q.q;
+
+  // Hint
+  const hintEl = document.getElementById('q-hint');
+  if (q.hint) { hintEl.textContent = q.hint; hintEl.style.display = 'block'; }
+  else hintEl.style.display = 'none';
+
+  // Skip note
+  const skipNote = document.getElementById('skip-note');
+  skipNote.textContent = (q.type === 'open' || q.type === 'upload') ? 'You may proceed without answering' : '';
+
+  // Next button
+  const nb = document.getElementById('next-btn');
+  nb.textContent = cur === total-1 ? 'Submit →' : 'Next →';
+
+  // Render input area
+  const wrap = document.getElementById('options-wrap');
+  wrap.innerHTML = '';
+
+  if (q.type === 'single') {
+    nb.disabled = answers[cur] === undefined;
+    q.opts.forEach((opt, i) => {
+      const d = document.createElement('div');
+      d.className = 'opt' + (answers[cur] === i ? ' selected' : '');
+      d.innerHTML = '<span class="opt-dot">' + LETTERS[i] + '</span><span class="opt-text">' + opt + '</span>';
+      d.onclick = () => pickSingle(i);
+      wrap.appendChild(d);
+    });
+  } else if (q.type === 'multi') {
+    const sel = Array.isArray(answers[cur]) ? answers[cur] : [];
+    nb.disabled = sel.length === 0;
+    q.opts.forEach((opt, i) => {
+      const d = document.createElement('div');
+      d.className = 'opt' + (sel.includes(i) ? ' multi-selected' : '');
+      d.innerHTML = '<span class="opt-dot" style="border-radius:4px">' + LETTERS[i] + '</span><span class="opt-text">' + opt + '</span>';
+      d.onclick = () => pickMulti(i);
+      wrap.appendChild(d);
+    });
+  } else if (q.type === 'open') {
+    nb.disabled = false;
+    const ta = document.createElement('textarea');
+    ta.className = 'open-textarea';
+    ta.placeholder = 'Type your answer here...';
+    ta.value = answers[cur] || '';
+    ta.addEventListener('input', () => { answers[cur] = ta.value; });
+    wrap.appendChild(ta);
+  } else if (q.type === 'upload') {
+    nb.disabled = false;
+    const existing = uploadedFiles[cur];
+    const area = document.createElement('div');
+    area.className = 'upload-area' + (existing ? ' has-file' : '');
+    area.id = 'upload-area-' + cur;
+    area.innerHTML = existing
+      ? '<div class="upload-icon">📎</div><div class="upload-title">File attached</div><div class="upload-filename">' + existing.name + '</div><div class="upload-sub" style="margin-top:6px;color:var(--text2)">Click to replace</div>'
+      : '<div class="upload-icon">📤</div><div class="upload-title">Click to upload your project plan</div><div class="upload-sub">Excel (.xlsx), Word (.docx), or PDF</div>';
+    area.onclick = () => document.getElementById('file-input-' + cur).click();
+    wrap.appendChild(area);
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.id = 'file-input-' + cur;
+    inp.className = 'upload-input';
+    inp.accept = '.xlsx,.xls,.docx,.doc,.pdf';
+    inp.addEventListener('change', (e) => handleFileUpload(e, cur));
+    wrap.appendChild(inp);
+  }
+}
+
+/* ── Pick handlers ── */
+function pickSingle(i) {
+  answers[cur] = i;
+  document.querySelectorAll('.opt').forEach((o,oi) => o.classList.toggle('selected', oi===i));
+  document.getElementById('next-btn').disabled = false;
+}
+function pickMulti(i) {
+  if (!Array.isArray(answers[cur])) answers[cur] = [];
+  const idx = answers[cur].indexOf(i);
+  if (idx === -1) answers[cur].push(i); else answers[cur].splice(idx, 1);
+  document.querySelectorAll('.opt').forEach((o,oi) => o.classList.toggle('multi-selected', answers[cur].includes(oi)));
+  document.getElementById('next-btn').disabled = answers[cur].length === 0;
+}
+function handleFileUpload(e, qIdx) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    uploadedFiles[qIdx] = { name: file.name, dataUrl: ev.target.result };
+    answers[qIdx] = '[FILE: ' + file.name + ']';
+    const area = document.getElementById('upload-area-' + qIdx);
+    if (area) {
+      area.classList.add('has-file');
+      area.innerHTML = '<div class="upload-icon">📎</div><div class="upload-title">File attached</div><div class="upload-filename">' + file.name + '</div><div class="upload-sub" style="margin-top:6px;color:var(--text2)">Click to replace</div>';
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── Next ── */
+function nextQ() {
+  cur++;
+  if (cur >= selectedQs.length) { clearInterval(timerRef); finalise(); return; }
+  renderQ();
+}
+
+/* ── Finalise ── */
+function finalise() {
+  const elapsed = Math.round((Date.now()-startMs)/1000);
+  const em = Math.floor(elapsed/60), es = elapsed%60;
+  const timeStr = em + ':' + (es<10?'0':'') + es;
+
+  // Score only single + multi
+  let scored = 0, scoredTotal = 0;
+  selectedQs.forEach((q, i) => {
+    if (q.type === 'single') {
+      scoredTotal++;
+      if (answers[i] === q.correct) scored++;
+    } else if (q.type === 'multi') {
+      scoredTotal++;
+      const sel = Array.isArray(answers[i]) ? [...answers[i]].sort().join(',') : '';
+      const exp = [...q.correct].sort().join(',');
+      if (sel === exp) scored++;
+    }
+  });
+  const pct = scoredTotal > 0 ? Math.round(scored/scoredTotal*100) : 0;
+  const verdict = pct>=80?'Strong — recommend for next round':pct>=65?'Good — proceed to interview':pct>=50?'Moderate — review gaps in interview':'Below threshold';
+
+  // Build detail
+  let detail = '';
+  selectedQs.forEach((q, i) => {
+    detail += '\nQ' + (i+1) + ' [' + q.type.toUpperCase() + ']\n';
+    detail += '  Question: ' + q.q + '\n';
+    if (q.type === 'single') {
+      const ok = answers[i] === q.correct;
+      const sel = answers[i] !== undefined ? LETTERS[answers[i]] + ': ' + q.opts[answers[i]] : 'Not answered';
+      const best = LETTERS[q.correct] + ': ' + q.opts[q.correct];
+      detail += '  Selected: ' + sel + '\n  Correct: ' + best + '\n  Result: ' + (ok?'CORRECT':'WRONG') + '\n';
+    } else if (q.type === 'multi') {
+      const sel = Array.isArray(answers[i]) ? answers[i].map(x=>LETTERS[x]+': '+q.opts[x]).join(' | ') : 'Not answered';
+      const exp = q.correct.map(x=>LETTERS[x]+': '+q.opts[x]).join(' | ');
+      const ok = Array.isArray(answers[i]) && [...answers[i]].sort().join(',') === [...q.correct].sort().join(',');
+      detail += '  Selected: ' + sel + '\n  Expected: ' + exp + '\n  Result: ' + (ok?'CORRECT':'WRONG') + '\n';
+    } else if (q.type === 'open') {
+      detail += '  Response: ' + (answers[i] || '[No response]') + '\n';
+    } else if (q.type === 'upload') {
+      detail += '  File: ' + (answers[i] || '[No file uploaded]') + '\n';
+    }
+  });
+
+  document.getElementById('done-name').textContent = candidateName;
+  show('screen-done');
+  sendEmail({ scored, scoredTotal, pct, timeStr, verdict, detail });
+}
+
+/* ── Send email ── */
+function sendEmail({ scored, scoredTotal, pct, timeStr, verdict, detail }) {
+  const noteEl = document.getElementById('email-note');
+  noteEl.className = 'email-note sending';
+  noteEl.textContent = 'Submitting your responses...';
+  if (EJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+    setTimeout(() => { noteEl.className = 'email-note failed'; noteEl.textContent = 'EmailJS not yet configured. See HTML setup instructions.'; }, 800);
+    return;
+  }
+  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+  const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
+
+  // Build attachments list from uploaded files
+  const fileNames = Object.values(uploadedFiles).map(f => f.name).join(', ') || 'None';
+
+  emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+    to_email: RECRUITER_EMAIL,
+    candidate_name: candidateName,
+    candidate_email: candidateEmail,
+    score: scored + '/' + scoredTotal + ' scored questions',
+    percentage: pct + '%',
+    time_taken: timeStr,
+    verdict: verdict,
+    files_uploaded: fileNames,
+    question_detail: detail.trim(),
+    submitted_at: now
+  }).then(() => {
+    noteEl.className = 'email-note sent';
+    noteEl.textContent = 'Responses submitted successfully.';
+  }).catch(err => {
+    noteEl.className = 'email-note failed';
+    noteEl.textContent = 'Submission note: responses saved locally. Contact hr@apposite.com if you have concerns.';
+    console.error(err);
+  });
+}
+
+/* ── Load EmailJS async so it never blocks page render ── */
+(function(){
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  s.async = true;
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
