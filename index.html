@@ -27,7 +27,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .brand-logo{height:40px;width:auto;display:block}
 .card{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r);padding:2rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(27,42,74,0.06)}
 .screen{display:none}.screen.active{display:block}
-.screen#screen-intro{display:block}
 .intro-title{font-size:30px;font-weight:700;color:#1B2A4A;line-height:1.2;margin-bottom:1.75rem;letter-spacing:-.01em}
 .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.75rem}
 .meta-tile{background:#FFFFFF;border-radius:var(--rs);padding:12px 14px;border:.5px solid var(--border-md)}
@@ -114,7 +113,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   </div>
 
   <!-- INTRO -->
-  <div class="screen" id="screen-intro">
+  <div class="screen active" id="screen-intro">
     <div class="card">
       <h1 class="intro-title">Assessment</h1>
       <div class="meta-grid">
@@ -312,12 +311,9 @@ let uploadedFiles = {}; // index → {name, dataUrl}
 
 /* ── Init ── */
 window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem(ATTEMPT_KEY)) {
-    document.getElementById('screen-intro').style.display = 'none';
-    show('screen-blocked');
-  } else {
-    document.getElementById('screen-intro').classList.add('active');
-  }
+  try {
+    if (localStorage.getItem(ATTEMPT_KEY)) { show('screen-blocked'); }
+  } catch(e) { /* localStorage blocked — allow attempt */ }
   ['inp-name','inp-email'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', function(){ this.classList.remove('err'); });
@@ -326,8 +322,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 /* ── Helpers ── */
 function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+    s.style.display = 'none';
+  });
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.display = 'block';
   window.scrollTo(0, 0);
 }
 function shuffle(arr) {
@@ -359,7 +360,7 @@ function startAssessment() {
   if (!valid) return;
   candidateName = nameEl.value.trim();
   candidateEmail = emailEl.value.trim();
-  localStorage.setItem(ATTEMPT_KEY, JSON.stringify({ name: candidateName, email: candidateEmail, startedAt: new Date().toISOString() }));
+  try { localStorage.setItem(ATTEMPT_KEY, JSON.stringify({ name: candidateName, email: candidateEmail, startedAt: new Date().toISOString() })); } catch(e) {}
   selectedQs = pickQuestions();
   answers = new Array(selectedQs.length).fill(undefined);
   cur = 0; secsLeft = TIME_LIMIT_SECS; startMs = Date.now();
