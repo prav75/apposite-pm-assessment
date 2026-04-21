@@ -189,108 +189,104 @@ var LETTERS         = ['A','B','C','D','E'];
 
 const BANK = {
 
-/* ── PM SKILLS — single select (20 questions) ── */
 skill_single: [
-{type:'single',q:'A client requests a new feature mid-sprint that was not in the original scope. What is the correct first step?',opts:['Add it to the current sprint immediately','Log a Change Request, assess impact on scope, timeline and cost, and present options to the stakeholder','Ask the team to absorb it quietly','Reject the request and refer the client to the SOW'],correct:1},
-{type:'single',q:'Your sprint velocity has dropped 30% over three sprints with no change in team size. What should you investigate first?',opts:['Whether the team needs salary increases','Scope creep, unplanned work, or growing technical debt entering each sprint','Whether the product owner is available enough','Whether the office environment has changed'],correct:1},
-{type:'single',q:'A key external dependency is 1 week late, putting go-live at risk. What do you do immediately?',opts:['Wait and see if it resolves itself','Update the RAID log, inform stakeholders, quantify the impact, and present a revised plan with mitigation options','Tell the client the vendor is responsible','Extend the sprint without telling anyone'],correct:1},
-{type:'single',q:'Which of the following best describes the difference between a risk and an issue?',opts:['They are the same thing','A risk is a potential future problem; an issue is a problem that has already occurred','A risk is always negative; an issue can be positive','Issues are logged in the RAID log; risks are not'],correct:1},
-{type:'single',q:'What is the purpose of a project charter?',opts:['To list all project tasks','To formally authorise the project and define its objectives, scope, stakeholders, and PM authority','To track sprint velocity','To document bugs found in QA'],correct:1},
-{type:'single',q:'In Agile, who is responsible for prioritising the product backlog?',opts:['The Project Manager','The Scrum Master','The Product Owner','The development team collectively'],correct:2},
-{type:'single',q:'What does MoSCoW stand for in requirements prioritisation?',opts:['Must, Should, Could, Would not','Must have, Should have, Could have, Won\'t have this time','Mandatory, Secondary, Conditional, Optional','Main, Supporting, Contextual, Wishlist'],correct:1},
-{type:'single',q:'Which of the following is NOT a typical output of sprint planning?',opts:['Sprint goal','Sprint backlog','Committed user stories with acceptance criteria','Project closure report'],correct:3},
-{type:'single',q:'What does "Definition of Done" mean in Scrum?',opts:['A list of all project deliverables','A shared, agreed checklist that defines when a user story is considered complete','The criteria for closing a project','The acceptance criteria for a specific user story'],correct:1},
-{type:'single',q:'Which metric best indicates whether a project is delivering value at the expected rate?',opts:['Number of bugs logged','Cost Performance Index (CPI) from Earned Value Management','Number of stories completed per sprint','Client satisfaction score'],correct:1},
-{type:'single',q:'Which of the following best describes "scope creep"?',opts:['A deliberate expansion approved by the sponsor','The gradual, uncontrolled addition of features or work beyond the original agreed scope','A change in the project timeline','A risk that has been escalated'],correct:1},
-{type:'single',q:'What is the role of the Scrum Master versus the Project Manager?',opts:['They are the same role','The Scrum Master facilitates the Agile process and removes impediments; the PM owns delivery outcomes, stakeholder management, and budget/timeline accountability','The PM writes user stories; the Scrum Master manages stakeholders','The Scrum Master has more authority than the PM'],correct:1},
-{type:'single',q:'A project sponsor stops attending steering committee meetings. What risk does this create?',opts:['No risk — steering committees are optional','Reduced organisational support, slower escalation resolution, and risk of strategic misalignment','The project can continue normally','Only the PM is affected'],correct:1},
-{type:'single',q:'What is the primary purpose of a lessons learned session at project close?',opts:['To identify who made mistakes','To document what went well and what could be improved to inform future projects','To finalise invoicing','To close all open JIRA tickets'],correct:1},
-{type:'single',q:'What is the difference between an epic and a user story in Agile?',opts:['They are the same — just different names','An epic is a large body of work that can be broken down into multiple user stories','A user story is always written by the PM; an epic by the product owner','Epics are used only in Waterfall'],correct:1},
-{type:'single',q:'In a Kanban workflow, what does a WIP limit do?',opts:['Prevents the team from taking on too many tasks simultaneously, improving flow and quality','Tracks how many stories are in the backlog','Is a reporting metric only','Determines how many people are on the team'],correct:0},
-{type:'single',q:'A project is 40% complete and 20% over budget. What is the most important immediate action?',opts:['Reduce team size to cut costs','Perform an Earned Value Analysis, identify the root cause, and present a recovery plan to stakeholders','Continue and hope to recover later','Ask the client for more budget without analysis'],correct:1},
-{type:'single',q:'What is the main purpose of a RACI matrix?',opts:['To track project risks','To clarify who is Responsible, Accountable, Consulted, and Informed for each task','To document the project budget','To manage the sprint backlog'],correct:1},
-{type:'single',q:'A QA engineer identifies a critical bug 2 days before go-live. What do you do?',opts:['Go live anyway and patch it later','Assess severity, decide whether to delay go-live, inform stakeholders, and document the decision with rationale','Fix it yourself without telling the client','Cancel the project'],correct:1},
-{type:'single',q:'You discover mid-project that a regulatory requirement was missed during scoping. What do you do?',opts:['Ignore it and hope no one notices','Add it silently to the backlog','Log it as a risk/issue, assess the impact, and raise it transparently with the client and stakeholders immediately','Blame the scoping team'],correct:2},
+{type:'single',comp:'Scope & Change Management',q:'A client requests a new feature mid-sprint that was not in the original scope. What is the correct first step?',opts:['Add it to the current sprint immediately','Log a Change Request, assess impact on scope, timeline and cost, and present options to the stakeholder','Ask the team to absorb it quietly','Reject the request and refer the client to the SOW'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'Your sprint velocity has dropped 30% over three sprints with no change in team size. What should you investigate first?',opts:['Whether the team needs salary increases','Scope creep, unplanned work, or growing technical debt entering each sprint','Whether the product owner is available enough','Whether the office environment has changed'],correct:1},
+{type:'single',comp:'Risk & Issue Management',q:'A key external dependency is 1 week late, putting go-live at risk. What do you do immediately?',opts:['Wait and see if it resolves itself','Update the RAID log, inform stakeholders, quantify the impact, and present a revised plan with mitigation options','Tell the client the vendor is responsible','Extend the sprint without telling anyone'],correct:1},
+{type:'single',comp:'Risk & Issue Management',q:'Which of the following best describes the difference between a risk and an issue?',opts:['They are the same thing','A risk is a potential future problem; an issue is a problem that has already occurred','A risk is always negative; an issue can be positive','Issues are logged in the RAID log; risks are not'],correct:1},
+{type:'single',comp:'Planning & Governance',q:'What is the purpose of a project charter?',opts:['To list all project tasks','To formally authorise the project and define its objectives, scope, stakeholders, and PM authority','To track sprint velocity','To document bugs found in QA'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'In Agile, who is responsible for prioritising the product backlog?',opts:['The Project Manager','The Scrum Master','The Product Owner','The development team collectively'],correct:2},
+{type:'single',comp:'Scope & Change Management',q:'What does MoSCoW stand for in requirements prioritisation?',opts:['Must, Should, Could, Would not','Must have, Should have, Could have, Won\'t have this time','Mandatory, Secondary, Conditional, Optional','Main, Supporting, Contextual, Wishlist'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'Which of the following is NOT a typical output of sprint planning?',opts:['Sprint goal','Sprint backlog','Committed user stories with acceptance criteria','Project closure report'],correct:3},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'What does \"Definition of Done\" mean in Scrum?',opts:['A list of all project deliverables','A shared, agreed checklist that defines when a user story is considered complete','The criteria for closing a project','The acceptance criteria for a specific user story'],correct:1},
+{type:'single',comp:'Planning & Governance',q:'Which metric best indicates whether a project is delivering value at the expected rate?',opts:['Number of bugs logged','Cost Performance Index (CPI) from Earned Value Management','Number of stories completed per sprint','Client satisfaction score'],correct:1},
+{type:'single',comp:'Scope & Change Management',q:'Which of the following best describes \"scope creep\"?',opts:['A deliberate expansion approved by the sponsor','The gradual, uncontrolled addition of features or work beyond the original agreed scope','A change in the project timeline','A risk that has been escalated'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'What is the role of the Scrum Master versus the Project Manager?',opts:['They are the same role','The Scrum Master facilitates the Agile process and removes impediments; the PM owns delivery outcomes, stakeholder management, and budget/timeline accountability','The PM writes user stories; the Scrum Master manages stakeholders','The Scrum Master has more authority than the PM'],correct:1},
+{type:'single',comp:'Stakeholder Management & Communication',q:'A project sponsor stops attending steering committee meetings. What risk does this create?',opts:['No risk — steering committees are optional','Reduced organisational support, slower escalation resolution, and risk of strategic misalignment','The project can continue normally','Only the PM is affected'],correct:1},
+{type:'single',comp:'Planning & Governance',q:'What is the primary purpose of a lessons learned session at project close?',opts:['To identify who made mistakes','To document what went well and what could be improved to inform future projects','To finalise invoicing','To close all open JIRA tickets'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'What is the difference between an epic and a user story in Agile?',opts:['They are the same — just different names','An epic is a large body of work that can be broken down into multiple user stories','A user story is always written by the PM; an epic by the product owner','Epics are used only in Waterfall'],correct:1},
+{type:'single',comp:'Agile Delivery & Sprint Execution',q:'In a Kanban workflow, what does a WIP limit do?',opts:['Prevents the team from taking on too many tasks simultaneously, improving flow and quality','Tracks how many stories are in the backlog','Is a reporting metric only','Determines how many people are on the team'],correct:0},
+{type:'single',comp:'Planning & Governance',q:'A project is 40% complete and 20% over budget. What is the most important immediate action?',opts:['Reduce team size to cut costs','Perform an Earned Value Analysis, identify the root cause, and present a recovery plan to stakeholders','Continue and hope to recover later','Ask the client for more budget without analysis'],correct:1},
+{type:'single',comp:'Planning & Governance',q:'What is the main purpose of a RACI matrix?',opts:['To track project risks','To clarify who is Responsible, Accountable, Consulted, and Informed for each task','To document the project budget','To manage the sprint backlog'],correct:1},
+{type:'single',comp:'Risk & Issue Management',q:'A QA engineer identifies a critical bug 2 days before go-live. What do you do?',opts:['Go live anyway and patch it later','Assess severity, decide whether to delay go-live, inform stakeholders, and document the decision with rationale','Fix it yourself without telling the client','Cancel the project'],correct:1},
+{type:'single',comp:'Risk & Issue Management',q:'You discover mid-project that a regulatory requirement was missed during scoping. What do you do?',opts:['Ignore it and hope no one notices','Add it silently to the backlog','Log it as a risk/issue, assess the impact, and raise it transparently with the client and stakeholders immediately','Blame the scoping team'],correct:2},
 ],
 
-/* ── PM SKILLS — multi select (8 questions) ── */
 skill_multi: [
-{type:'multi',q:'Which of the following are valid inputs to sprint planning?',opts:['Product backlog','Team capacity and velocity','A project charter','Definition of Done','The company org chart'],correct:[0,1,3]},
-{type:'multi',q:'Which of the following are typical contents of a RAID log?',opts:['Risks','Assumptions','Issues','Dependencies','Sprint velocity'],correct:[0,1,2,3]},
-{type:'multi',q:'A project is running behind schedule. Which of the following are legitimate recovery options a PM should consider?',opts:['Reduce scope with sponsor approval','Add resources to critical path tasks','Extend the deadline with stakeholder agreement','Remove QA entirely to save time','Re-sequence tasks to increase parallelism'],correct:[0,1,2,4]},
-{type:'multi',q:'Which of the following are responsibilities of a Project Manager in an Agile delivery?',opts:['Writing code for the team','Stakeholder management and communication','Managing risks and dependencies','Facilitating sprint ceremonies','Removing blockers and escalating impediments'],correct:[1,2,3,4]},
-{type:'multi',q:'Which of the following should be included in a weekly project status report?',opts:['RAG status','Key milestones completed this week','Risks and issues update','Detailed code review notes','Actions and owners for next week'],correct:[0,1,2,4]},
-{type:'multi',q:'Which of the following are signs that a project is at risk of scope creep?',opts:['Stakeholders regularly request additions outside the agreed SOW','The backlog grows significantly between sprints without formal review','The team delivers ahead of schedule','Requirements keep changing after sign-off','The client never attends steering meetings'],correct:[0,1,3]},
-{type:'multi',q:'Which of the following are characteristics of a well-written user story?',opts:['It follows the As a / I want / So that format','It includes clear acceptance criteria','It is written by the development team','It is small enough to complete within a sprint','It references business value'],correct:[0,1,3,4]},
-{type:'multi',q:'Which of the following actions should a PM take when onboarding a new team member mid-project?',opts:['Brief them on project goals, current status, their role, and key stakeholders','Assign them the most urgent task immediately without context','Share relevant project documentation','Introduce them to key stakeholders','Leave them to read through the Jira board on their own'],correct:[0,2,3]},
+{type:'multi',comp:'Agile Delivery & Sprint Execution',q:'Which of the following are valid inputs to sprint planning?',opts:['Product backlog','Team capacity and velocity','A project charter','Definition of Done','The company org chart'],correct:[0,1,3]},
+{type:'multi',comp:'Risk & Issue Management',q:'Which of the following are typical contents of a RAID log?',opts:['Risks','Assumptions','Issues','Dependencies','Sprint velocity'],correct:[0,1,2,3]},
+{type:'multi',comp:'Planning & Governance',q:'A project is running behind schedule. Which of the following are legitimate recovery options a PM should consider?',opts:['Reduce scope with sponsor approval','Add resources to critical path tasks','Extend the deadline with stakeholder agreement','Remove QA entirely to save time','Re-sequence tasks to increase parallelism'],correct:[0,1,2,4]},
+{type:'multi',comp:'Agile Delivery & Sprint Execution',q:'Which of the following are responsibilities of a Project Manager in an Agile delivery?',opts:['Writing code for the team','Stakeholder management and communication','Managing risks and dependencies','Facilitating sprint ceremonies','Removing blockers and escalating impediments'],correct:[1,2,3,4]},
+{type:'multi',comp:'Stakeholder Management & Communication',q:'Which of the following should be included in a weekly project status report?',opts:['RAG status','Key milestones completed this week','Risks and issues update','Detailed code review notes','Actions and owners for next week'],correct:[0,1,2,4]},
+{type:'multi',comp:'Scope & Change Management',q:'Which of the following are signs that a project is at risk of scope creep?',opts:['Stakeholders regularly request additions outside the agreed SOW','The backlog grows significantly between sprints without formal review','The team delivers ahead of schedule','Requirements keep changing after sign-off','The client never attends steering meetings'],correct:[0,1,3]},
+{type:'multi',comp:'Agile Delivery & Sprint Execution',q:'Which of the following are characteristics of a well-written user story?',opts:['It follows the As a / I want / So that format','It includes clear acceptance criteria','It is written by the development team','It is small enough to complete within a sprint','It references business value'],correct:[0,1,3,4]},
+{type:'multi',comp:'Team Leadership & Collaboration',q:'Which of the following actions should a PM take when onboarding a new team member mid-project?',opts:['Brief them on project goals, current status, their role, and key stakeholders','Assign them the most urgent task immediately without context','Share relevant project documentation','Introduce them to key stakeholders','Leave them to read through the Jira board on their own'],correct:[0,2,3]},
 ],
 
-/* ── PERSONALITY — single select (15 questions) ── */
 personality_single: [
-{type:'single',q:'You disagree with a decision made by your line manager that you believe will negatively impact the project. What do you do?',opts:['Say nothing — managers are always right','Complain to colleagues','Request a private meeting, present your concerns with evidence, and accept the outcome if they maintain their position','Ignore the decision and proceed your own way'],correct:2},
-{type:'single',q:'You are given a task with a tight deadline and unclear instructions. What is your first instinct?',opts:['Wait for clearer instructions before starting','Start working without telling anyone','Clarify key ambiguities upfront, agree on a minimum viable output, and begin immediately','Ask to be removed from the task'],correct:2},
-{type:'single',q:'You have made a significant error that has delayed the timeline by one week. What do you do?',opts:['Try to recover silently before anyone notices','Inform stakeholders immediately, explain what happened, and present a recovery plan','Blame the delay on the development team','Minimise the error in your status report'],correct:1},
-{type:'single',q:'You are asked to take on more work than you can reasonably deliver. What is the most professional response?',opts:['Accept everything and work extra hours indefinitely','Refuse all additional work','Accept, prioritise clearly with your manager, and flag which existing commitments will be affected','Do as much as you can without telling anyone what gets dropped'],correct:2},
-{type:'single',q:'You receive critical feedback on work you are proud of. What is your reaction?',opts:['Defend the work and explain why the feedback is wrong','Feel discouraged and avoid sharing work in future','Thank the person, separate the emotional reaction from the content, identify what is valid, and use it to improve','Agree with everything even if you disagree'],correct:2},
-{type:'single',q:'You are presenting a project update to senior leadership and the news is mostly bad. How do you prepare?',opts:['Spin the narrative to make things sound better','Only present the positive aspects','Present the facts clearly, explain root causes, and arrive with a concrete recovery plan and recommended next steps','Let someone else present to avoid being associated with bad news'],correct:2},
-{type:'single',q:'How do you handle a situation where you do not know the answer to a question from a senior stakeholder?',opts:['Make something up that sounds plausible','Avoid the question','Acknowledge you do not have the answer right now, commit to finding out, and follow up within a specific timeframe','Deflect to a team member'],correct:2},
-{type:'single',q:'Two team members have a personal conflict affecting team productivity. What do you do?',opts:['Ignore it — personal issues are not a PM\'s concern','Wait until it becomes a formal complaint','Meet with each person individually, then mediate a structured conversation focused on professional behaviour and project impact','Take sides with the more senior person'],correct:2},
-{type:'single',q:'A colleague takes credit for an idea you proposed. How do you handle this?',opts:['Publicly call them out in the next meeting','Say nothing and let it pass','Address it calmly and privately, clarifying your contribution','Complain to HR immediately'],correct:2},
-{type:'single',q:'You are managing two projects and realise you cannot do both well. What do you do?',opts:['Try to manage both and deliver mediocre results','Drop the lower-priority one without telling anyone','Have an honest conversation with your manager about capacity and ask for a prioritisation decision','Ask a junior colleague to manage one without formally delegating'],correct:2},
-{type:'single',q:'A team member is visibly struggling with their workload but has not asked for help. What do you do?',opts:['Wait until they ask','Call them out in the team standup','Have a private, supportive conversation to check in and explore solutions together','Reduce their responsibilities without discussing it with them'],correct:2},
-{type:'single',q:'How do you build trust with a new team you have just started managing?',opts:['Assert authority immediately so the team knows who is in charge','Befriend everyone socially before addressing professional issues','Listen more than you talk initially, follow through on every commitment, be transparent about your limitations, and demonstrate consistent fairness','Implement new processes immediately to show you are taking charge'],correct:2},
-{type:'single',q:'You strongly disagree with a project direction but have been overruled by the sponsor. What do you do?',opts:['Sabotage the direction subtly','Continue arguing your point at every opportunity','Document your concern formally, then commit fully to delivering the agreed direction to the best of your ability','Resign from the project'],correct:2},
-{type:'single',q:'When faced with a task you have never done before, what is your typical approach?',opts:['Avoid it until forced','Attempt it without any preparation','Research what is involved, identify who has relevant experience, plan carefully, and proceed with appropriate checkpoints','Delegate it without trying'],correct:2},
-{type:'single',q:'A client is being unreasonably demanding and behaving rudely toward your team. How do you respond?',opts:['Match their energy','Let the team deal with it directly','Address it professionally and privately with the client, set clear expectations around respectful communication, and escalate if the behaviour continues','Apologise on behalf of your team and absorb the behaviour'],correct:2},
+{type:'single',comp:'Ownership & Decision Making',q:'You disagree with a decision made by your line manager that you believe will negatively impact the project. What do you do?',opts:['Say nothing — managers are always right','Complain to colleagues','Request a private meeting, present your concerns with evidence, and accept the outcome if they maintain their position','Ignore the decision and proceed your own way'],correct:2},
+{type:'single',comp:'Handling Ambiguity & Problem Solving',q:'You are given a task with a tight deadline and unclear instructions. What is your first instinct?',opts:['Wait for clearer instructions before starting','Start working without telling anyone','Clarify key ambiguities upfront, agree on a minimum viable output, and begin immediately','Ask to be removed from the task'],correct:2},
+{type:'single',comp:'Stakeholder Management & Communication',q:'You have made a significant error that has delayed the timeline by one week. What do you do?',opts:['Try to recover silently before anyone notices','Inform stakeholders immediately, explain what happened, and present a recovery plan','Blame the delay on the development team','Minimise the error in your status report'],correct:1},
+{type:'single',comp:'Ownership & Decision Making',q:'You are asked to take on more work than you can reasonably deliver. What is the most professional response?',opts:['Accept everything and work extra hours indefinitely','Refuse all additional work','Accept, prioritise clearly with your manager, and flag which existing commitments will be affected','Do as much as you can without telling anyone what gets dropped'],correct:2},
+{type:'single',comp:'Ownership & Decision Making',q:'You receive critical feedback on work you are proud of. What is your reaction?',opts:['Defend the work and explain why the feedback is wrong','Feel discouraged and avoid sharing work in future','Thank the person, separate the emotional reaction from the content, identify what is valid, and use it to improve','Agree with everything even if you disagree'],correct:2},
+{type:'single',comp:'Stakeholder Management & Communication',q:'You are presenting a project update to senior leadership and the news is mostly bad. How do you prepare?',opts:['Spin the narrative to make things sound better','Only present the positive aspects','Present the facts clearly, explain root causes, and arrive with a concrete recovery plan and recommended next steps','Let someone else present to avoid being associated with bad news'],correct:2},
+{type:'single',comp:'Stakeholder Management & Communication',q:'How do you handle a situation where you do not know the answer to a question from a senior stakeholder?',opts:['Make something up that sounds plausible','Avoid the question','Acknowledge you do not have the answer right now, commit to finding out, and follow up within a specific timeframe','Deflect to a team member'],correct:2},
+{type:'single',comp:'Team Leadership & Collaboration',q:'Two team members have a personal conflict affecting team productivity. What do you do?',opts:['Ignore it — personal issues are not a PM\'s concern','Wait until it becomes a formal complaint','Meet with each person individually, then mediate a structured conversation focused on professional behaviour and project impact','Take sides with the more senior person'],correct:2},
+{type:'single',comp:'Team Leadership & Collaboration',q:'A colleague takes credit for an idea you proposed. How do you handle this?',opts:['Publicly call them out in the next meeting','Say nothing and let it pass','Address it calmly and privately, clarifying your contribution','Complain to HR immediately'],correct:2},
+{type:'single',comp:'Ownership & Decision Making',q:'You are managing two projects and realise you cannot do both well. What do you do?',opts:['Try to manage both and deliver mediocre results','Drop the lower-priority one without telling anyone','Have an honest conversation with your manager about capacity and ask for a prioritisation decision','Ask a junior colleague to manage one without formally delegating'],correct:2},
+{type:'single',comp:'Team Leadership & Collaboration',q:'A team member is visibly struggling with their workload but has not asked for help. What do you do?',opts:['Wait until they ask','Call them out in the team standup','Have a private, supportive conversation to check in and explore solutions together','Reduce their responsibilities without discussing it with them'],correct:2},
+{type:'single',comp:'Team Leadership & Collaboration',q:'How do you build trust with a new team you have just started managing?',opts:['Assert authority immediately so the team knows who is in charge','Befriend everyone socially before addressing professional issues','Listen more than you talk initially, follow through on every commitment, be transparent about your limitations, and demonstrate consistent fairness','Implement new processes immediately to show you are taking charge'],correct:2},
+{type:'single',comp:'Ownership & Decision Making',q:'You strongly disagree with a project direction but have been overruled by the sponsor. What do you do?',opts:['Sabotage the direction subtly','Continue arguing your point at every opportunity','Document your concern formally, then commit fully to delivering the agreed direction to the best of your ability','Resign from the project'],correct:2},
+{type:'single',comp:'Handling Ambiguity & Problem Solving',q:'When faced with a task you have never done before, what is your typical approach?',opts:['Avoid it until forced','Attempt it without any preparation','Research what is involved, identify who has relevant experience, plan carefully, and proceed with appropriate checkpoints','Delegate it without trying'],correct:2},
+{type:'single',comp:'Stakeholder Management & Communication',q:'A client is being unreasonably demanding and behaving rudely toward your team. How do you respond?',opts:['Match their energy','Let the team deal with it directly','Address it professionally and privately with the client, set clear expectations around respectful communication, and escalate if the behaviour continues','Apologise on behalf of your team and absorb the behaviour'],correct:2},
 ],
 
-/* ── PERSONALITY — multi select (6 questions) ── */
 personality_multi: [
-{type:'multi',q:'Which of the following are effective ways to manage competing priorities from different stakeholders?',opts:['Do whatever the most senior person asks','Facilitate a structured prioritisation conversation that makes trade-offs explicit','Gain alignment and document the agreed priority order','Address requests in the order they were received','Involve the project sponsor when alignment cannot be reached'],correct:[1,2,4]},
-{type:'multi',q:'Which of the following demonstrate strong ownership as a PM?',opts:['Escalating every decision to your manager','Proactively flagging risks before they become issues','Following through on commitments even when inconvenient','Waiting to be asked before acting on a problem','Being transparent about challenges even when the news is bad'],correct:[1,2,4]},
-{type:'multi',q:'Which of the following are signs of low psychological safety in a team?',opts:['Team members always agree with each other in meetings','No issues are ever raised in retrospectives','The team openly discusses mistakes and learns from them','Team members avoid sharing concerns about the project approach','People speak up freely with new ideas'],correct:[0,1,3]},
-{type:'multi',q:'Which of the following are effective ways to give feedback to an underperforming team member?',opts:['Raise it publicly in the next team meeting','Address it privately and focus on specific observed behaviours','Set clear expectations and agree on measurable improvement goals','Ignore it and hope it improves on its own','Offer support and check in regularly on progress'],correct:[1,2,4]},
-{type:'multi',q:'Which of the following reflect good communication practices for a PM?',opts:['Communicate proactively, even when the news is incomplete','Wait until all information is available before communicating','Tailor the message to the audience — technical detail for engineers, business impact for stakeholders','Send the same update to all groups regardless of their needs','Document decisions in writing so there is a clear record'],correct:[0,2,4]},
-{type:'multi',q:'Which of the following are healthy responses when a project is not going well despite your best efforts?',opts:['Conduct an honest self-assessment of what can be improved','Seek input from the team on root causes','Adjust the approach based on what you learn','Pretend everything is fine to protect your reputation','Escalate to leadership with a clear picture and a recommendation'],correct:[0,1,2,4]},
+{type:'multi',comp:'Stakeholder Management & Communication',q:'Which of the following are effective ways to manage competing priorities from different stakeholders?',opts:['Do whatever the most senior person asks','Facilitate a structured prioritisation conversation that makes trade-offs explicit','Gain alignment and document the agreed priority order','Address requests in the order they were received','Involve the project sponsor when alignment cannot be reached'],correct:[1,2,4]},
+{type:'multi',comp:'Ownership & Decision Making',q:'Which of the following demonstrate strong ownership as a PM?',opts:['Escalating every decision to your manager','Proactively flagging risks before they become issues','Following through on commitments even when inconvenient','Waiting to be asked before acting on a problem','Being transparent about challenges even when the news is bad'],correct:[1,2,4]},
+{type:'multi',comp:'Team Leadership & Collaboration',q:'Which of the following are signs of low psychological safety in a team?',opts:['Team members always agree with each other in meetings','No issues are ever raised in retrospectives','The team openly discusses mistakes and learns from them','Team members avoid sharing concerns about the project approach','People speak up freely with new ideas'],correct:[0,1,3]},
+{type:'multi',comp:'Team Leadership & Collaboration',q:'Which of the following are effective ways to give feedback to an underperforming team member?',opts:['Raise it publicly in the next team meeting','Address it privately and focus on specific observed behaviours','Set clear expectations and agree on measurable improvement goals','Ignore it and hope it improves on its own','Offer support and check in regularly on progress'],correct:[1,2,4]},
+{type:'multi',comp:'Stakeholder Management & Communication',q:'Which of the following reflect good communication practices for a PM?',opts:['Communicate proactively, even when the news is incomplete','Wait until all information is available before communicating','Tailor the message to the audience — technical detail for engineers, business impact for stakeholders','Send the same update to all groups regardless of their needs','Document decisions in writing so there is a clear record'],correct:[0,2,4]},
+{type:'multi',comp:'Ownership & Decision Making',q:'Which of the following are healthy responses when a project is not going well despite your best efforts?',opts:['Conduct an honest self-assessment of what can be improved','Seek input from the team on root causes','Adjust the approach based on what you learn','Pretend everything is fine to protect your reputation','Escalate to leadership with a clear picture and a recommendation'],correct:[0,1,2,4]},
 ],
 
-/* ── OPEN ENDED — situational thinking (20 questions, max 5 per assessment) ── */
 open: [
-{type:'open',q:'You have just taken over a project that is 6 weeks in. The team is demotivated, the client is unhappy, and there is no clear project plan. Walk us through the first 10 days of your approach.',hint:'There is no single right answer. We are looking for your thinking process, priorities, and how you would structure your approach.'},
-{type:'open',q:'A client calls you on a Friday afternoon to say they are unhappy with the project and are considering ending the contract. You have no prior warning. Describe how you would handle the next 48 hours.',hint:'Consider immediate actions, communication, and your plan to stabilise the situation.'},
-{type:'open',q:'You are managing a cross-functional team of 12 people across development, QA, design, and content. Three team members are consistently missing sprint commitments but all give plausible reasons. How do you diagnose and address this?',hint:'Think about what information you would gather, how you would approach each person, and what process changes you might introduce.'},
-{type:'open',q:'Your project has three weeks to go-live. A critical integration with a third-party API fails in UAT and the vendor says it will take 2 weeks to fix — leaving you with only 1 week before go-live. What do you do?',hint:'Consider your options, how you communicate with stakeholders, and how you make a recommendation.'},
-{type:'open',q:'A senior stakeholder keeps expanding the project scope in steering meetings, framing additions as "small" and "obvious". The team is frustrated. How do you handle this without damaging the relationship?',hint:'Think about both the immediate conversation and the process change you would put in place.'},
-{type:'open',q:'You are asked to create a project plan for a 4-month software build with a team of 6. The requirements are still being finalised. How do you approach planning under uncertainty, and what does your plan look like?',hint:'Describe your planning methodology, what you would include, and how you would handle the unknowns.'},
-{type:'open',q:'Two of your best developers want to completely redesign a core module 2 weeks before launch because they believe the current approach has long-term technical debt. How do you evaluate this and make a decision?',hint:'There is no definitive right answer — we want to see how you weigh technical risk against delivery risk.'},
-{type:'open',q:'Describe a time you had to deliver difficult news to a client or senior stakeholder. How did you prepare, what did you say, and what was the outcome?',hint:'This can be a real or hypothetical situation. We are looking for your communication approach and self-awareness.'},
-{type:'open',q:'You join a new organisation and discover the project delivery process is inconsistent — different PMs do things very differently with no standards. You are asked to improve this. What do you do, and how do you bring the team along?',hint:'Think about how you would assess the current state, what you would standardise, and how you would manage change.'},
-{type:'open',q:'Your project has a hard deadline set by an external regulatory body. Two weeks before the deadline, you realise you will miss it by approximately 5 days. What are your options, and what do you recommend?',hint:'Walk us through your options analysis and how you would present your recommendation to leadership.'},
-{type:'open',q:'Describe how you would set up governance for a 6-month project with 4 internal workstreams and 2 external vendors. What meetings would you run, what reports would you produce, and how would you manage escalations?',hint:'We are looking for your practical governance approach — not a textbook answer.'},
-{type:'open',q:'A key team member who owns a critical module resigns with 2 weeks notice and there is no documentation. How do you manage this risk and protect the project?',hint:'Think through the immediate actions, knowledge transfer, and how you communicate the risk to stakeholders.'},
-{type:'open',q:'You are leading the delivery of a new LMS platform for a 5,000-user organisation. The client has strong opinions about the UI but the development team believes their requests are technically unworkable. How do you broker this?',hint:'Consider how you facilitate the conversation, what trade-offs you explore, and how you reach a resolution.'},
-{type:'open',q:'Halfway through a project, your organisation announces a company-wide freeze on spending. Your project budget is reduced by 20%. How do you respond?',hint:'Walk us through how you assess the impact, what you cut, how you communicate, and what you negotiate.'},
-{type:'open',q:'A junior PM on your team consistently produces status reports that are technically accurate but fail to communicate risk or urgency to leadership. How do you coach them?',hint:'We are looking for your approach to developing others — what specific guidance would you give, and how would you follow up?'},
-{type:'open',q:'You are running a retrospective at the end of a difficult sprint. The team is frustrated and there is blame in the air. How do you facilitate this session productively?',hint:'Describe your facilitation approach, what ground rules you set, and how you convert frustration into actionable improvement.'},
-{type:'open',q:'Your client says they want the project delivered using Waterfall but your team\'s strength is Agile. How do you navigate this, and what delivery approach do you propose?',hint:'Think about how you educate the client, what hybrid options exist, and how you build confidence in your recommendation.'},
-{type:'open',q:'You are managing a project for a client in a highly regulated industry. A developer wants to take a shortcut that would speed up delivery by 2 weeks but creates a compliance gap. How do you handle this?',hint:'Consider the risk, the conversation you have with the developer, and how you communicate with the client.'},
-{type:'open',q:'Your team tells you in a retrospective that they feel micromanaged. You believe you have been appropriately involved. How do you respond to this feedback?',hint:'We are looking for self-awareness and a constructive approach — not defensiveness or dismissiveness.'},
-{type:'open',q:'You have been asked to estimate the timeline for a complex 12-month programme that has never been done before in your organisation. How do you approach this, and what does your estimate look like?',hint:'Describe your estimation methodology, the assumptions you would make, and how you would communicate uncertainty.'},
+{type:'open',comp:'Handling Ambiguity & Problem Solving',q:'You have just taken over a project that is 6 weeks in. The team is demotivated, the client is unhappy, and there is no clear project plan. Walk us through the first 10 days of your approach.',hint:'There is no single right answer. We are looking for your thinking process, priorities, and how you would structure your approach.'},
+{type:'open',comp:'Stakeholder Management & Communication',q:'A client calls you on a Friday afternoon to say they are unhappy with the project and are considering ending the contract. You have no prior warning. Describe how you would handle the next 48 hours.',hint:'Consider immediate actions, communication, and your plan to stabilise the situation.'},
+{type:'open',comp:'Team Leadership & Collaboration',q:'You are managing a cross-functional team of 12 people across development, QA, design, and content. Three team members are consistently missing sprint commitments but all give plausible reasons. How do you diagnose and address this?',hint:'Think about what information you would gather, how you would approach each person, and what process changes you might introduce.'},
+{type:'open',comp:'Risk & Issue Management',q:'Your project has three weeks to go-live. A critical integration with a third-party API fails in UAT and the vendor says it will take 2 weeks to fix — leaving you with only 1 week before go-live. What do you do?',hint:'Consider your options, how you communicate with stakeholders, and how you make a recommendation.'},
+{type:'open',comp:'Scope & Change Management',q:'A senior stakeholder keeps expanding the project scope in steering meetings, framing additions as "small" and "obvious". The team is frustrated. How do you handle this without damaging the relationship?',hint:'Think about both the immediate conversation and the process change you would put in place.'},
+{type:'open',comp:'Planning & Governance',q:'You are asked to create a project plan for a 4-month software build with a team of 6. The requirements are still being finalised. How do you approach planning under uncertainty, and what does your plan look like?',hint:'Describe your planning methodology, what you would include, and how you would handle the unknowns.'},
+{type:'open',comp:'Ownership & Decision Making',q:'Two of your best developers want to completely redesign a core module 2 weeks before launch because they believe the current approach has long-term technical debt. How do you evaluate this and make a decision?',hint:'There is no definitive right answer — we want to see how you weigh technical risk against delivery risk.'},
+{type:'open',comp:'Stakeholder Management & Communication',q:'Describe a time you had to deliver difficult news to a client or senior stakeholder. How did you prepare, what did you say, and what was the outcome?',hint:'This can be a real or hypothetical situation. We are looking for your communication approach and self-awareness.'},
+{type:'open',comp:'Handling Ambiguity & Problem Solving',q:'You join a new organisation and discover the project delivery process is inconsistent — different PMs do things very differently with no standards. You are asked to improve this. What do you do, and how do you bring the team along?',hint:'Think about how you would assess the current state, what you would standardise, and how you would manage change.'},
+{type:'open',comp:'Ownership & Decision Making',q:'Your project has a hard deadline set by an external regulatory body. Two weeks before the deadline, you realise you will miss it by approximately 5 days. What are your options, and what do you recommend?',hint:'Walk us through your options analysis and how you would present your recommendation to leadership.'},
+{type:'open',comp:'Planning & Governance',q:'Describe how you would set up governance for a 6-month project with 4 internal workstreams and 2 external vendors. What meetings would you run, what reports would you produce, and how would you manage escalations?',hint:'We are looking for your practical governance approach — not a textbook answer.'},
+{type:'open',comp:'Risk & Issue Management',q:'A key team member who owns a critical module resigns with 2 weeks notice and there is no documentation. How do you manage this risk and protect the project?',hint:'Think through the immediate actions, knowledge transfer, and how you communicate the risk to stakeholders.'},
+{type:'open',comp:'Stakeholder Management & Communication',q:'You are leading the delivery of a new LMS platform for a 5,000-user organisation. The client has strong opinions about the UI but the development team believes their requests are technically unworkable. How do you broker this?',hint:'Consider how you facilitate the conversation, what trade-offs you explore, and how you reach a resolution.'},
+{type:'open',comp:'Planning & Governance',q:'Halfway through a project, your organisation announces a company-wide freeze on spending. Your project budget is reduced by 20%. How do you respond?',hint:'Walk us through how you assess the impact, what you cut, how you communicate, and what you negotiate.'},
+{type:'open',comp:'Team Leadership & Collaboration',q:'A junior PM on your team consistently produces status reports that are technically accurate but fail to communicate risk or urgency to leadership. How do you coach them?',hint:'We are looking for your approach to developing others — what specific guidance would you give, and how would you follow up?'},
+{type:'open',comp:'Team Leadership & Collaboration',q:'You are running a retrospective at the end of a difficult sprint. The team is frustrated and there is blame in the air. How do you facilitate this session productively?',hint:'Describe your facilitation approach, what ground rules you set, and how you convert frustration into actionable improvement.'},
+{type:'open',comp:'Handling Ambiguity & Problem Solving',q:'Your client says they want the project delivered using Waterfall but your team\'s strength is Agile. How do you navigate this, and what delivery approach do you propose?',hint:'Think about how you educate the client, what hybrid options exist, and how you build confidence in your recommendation.'},
+{type:'open',comp:'Risk & Issue Management',q:'You are managing a project for a client in a highly regulated industry. A developer wants to take a shortcut that would speed up delivery by 2 weeks but creates a compliance gap. How do you handle this?',hint:'Consider the risk, the conversation you have with the developer, and how you communicate with the client.'},
+{type:'open',comp:'Ownership & Decision Making',q:'Your team tells you in a retrospective that they feel micromanaged. You believe you have been appropriately involved. How do you respond to this feedback?',hint:'We are looking for self-awareness and a constructive approach — not defensiveness or dismissiveness.'},
+{type:'open',comp:'Planning & Governance',q:'You have been asked to estimate the timeline for a complex 12-month programme that has never been done before in your organisation. How do you approach this, and what does your estimate look like?',hint:'Describe your estimation methodology, the assumptions you would make, and how you would communicate uncertainty.'},
 ],
 
-/* ── FILE UPLOAD — project planning (pool of 2, 1 drawn per assessment) ── */
 upload: [
-{type:'upload',
+{type:'upload',comp:'Project Planning (Practical)',
  scenario:'You have been appointed as the Project Manager for a company rolling out a new Learning Management System (LMS) to 3,000 employees across 5 departments. The project involves vendor selection, platform configuration, content migration, user training, and go-live. The project must be completed within 6 months with a team of 6 people.',
  q:'Create a Work Breakdown Structure (WBS) for this LMS rollout project. Your WBS should include: all major phases and deliverables, key milestones with target dates, effort estimates per task or workstream (in days or hours), and task ownership or resource type. Submit your plan as an Excel spreadsheet (.xlsx) or a clearly structured document.',
  hint:'Think like a real PM. We are looking for logical phasing, realistic effort estimates, clear milestones, and evidence that you understand the dependencies involved in a project of this nature.'},
-{type:'upload',
+{type:'upload',comp:'Project Planning (Practical)',
  scenario:'A financial services company has commissioned a 5-month custom software development project to build an internal employee performance management platform. The platform includes a goal-setting module, a 360-degree feedback tool, and a manager dashboard. The team consists of 2 frontend developers, 1 backend developer, 1 QA engineer, and 1 UX designer.',
  q:'Create a Work Breakdown Structure (WBS) for this software development project. Your WBS should include: all major phases and deliverables, key milestones with target dates (sprint-level or phase-level), effort estimates per task or workstream, and resource assignments. Submit your plan as an Excel spreadsheet (.xlsx) or a clearly structured document.',
  hint:'We are looking for an Agile or hybrid delivery structure with realistic sprint planning, clear milestones such as design sign-off, build completion, UAT entry and go-live, and effort estimates that reflect the team composition.'},
 ]
 
 }; /* end BANK */
+
+
 
 var state = {
   qs: [], cur: 0, answers: [], timer: null,
@@ -527,43 +523,111 @@ function finish() {
   var em = Math.floor(elapsed / 60), es = elapsed % 60;
   var timeStr = em + ':' + (es < 10 ? '0' : '') + es;
 
-  var scored = 0, total = 0;
+  // ── Score scored questions ──────────────────────────────────────────────
+  var scored = 0, scoredTotal = 0;
   for (var i = 0; i < state.qs.length; i++) {
     var q = state.qs[i];
     if (q.type === 'single') {
-      total++;
+      scoredTotal++;
       if (state.answers[i] === q.correct) scored++;
     } else if (q.type === 'multi') {
-      total++;
+      scoredTotal++;
       var sel = Array.isArray(state.answers[i]) ? state.answers[i].slice().sort().join(',') : '';
       var exp = q.correct.slice().sort().join(',');
       if (sel === exp) scored++;
     }
   }
-  var pct = total > 0 ? Math.round(scored / total * 100) : 0;
-  var verdict = pct >= 80 ? 'Strong — recommend for next round' :
-                pct >= 65 ? 'Good — proceed to interview' :
-                pct >= 50 ? 'Moderate — review gaps in interview' : 'Below threshold';
+  var pct = scoredTotal > 0 ? Math.round(scored / scoredTotal * 100) : 0;
 
+  // ── Competency breakdown (scored questions only) ─────────────────────────
+  var comps = {};
+  for (var i = 0; i < state.qs.length; i++) {
+    var q = state.qs[i];
+    if (q.type !== 'single' && q.type !== 'multi') continue;
+    var c = q.comp || 'General';
+    if (!comps[c]) comps[c] = { correct: 0, total: 0 };
+    comps[c].total++;
+    var ok = false;
+    if (q.type === 'single') {
+      ok = (state.answers[i] === q.correct);
+    } else {
+      var sel = Array.isArray(state.answers[i]) ? state.answers[i].slice().sort().join(',') : '';
+      ok = (sel === q.correct.slice().sort().join(','));
+    }
+    if (ok) comps[c].correct++;
+  }
+
+  // ── Build competency breakdown text ─────────────────────────────────────
+  var compOrder = [
+    'Scope & Change Management',
+    'Risk & Issue Management',
+    'Agile Delivery & Sprint Execution',
+    'Stakeholder Management & Communication',
+    'Planning & Governance',
+    'Ownership & Decision Making',
+    'Handling Ambiguity & Problem Solving',
+    'Team Leadership & Collaboration'
+  ];
+
+  var compLines = '';
+  var gapAreas = [];
+  var strongAreas = [];
+
+  for (var ci = 0; ci < compOrder.length; ci++) {
+    var name = compOrder[ci];
+    if (!comps[name]) continue;
+    var d = comps[name];
+    var cpct = Math.round(d.correct / d.total * 100);
+    var rating = cpct >= 80 ? 'Strong' : cpct >= 60 ? 'Adequate' : 'Gap';
+    var flag = cpct >= 80 ? '[STRONG]' : cpct >= 60 ? '[ADEQUATE]' : '[GAP]';
+    compLines += name + ': ' + d.correct + '/' + d.total + ' (' + cpct + '%) ' + flag + '\n';
+    if (cpct < 60) gapAreas.push(name);
+    else if (cpct >= 80) strongAreas.push(name);
+  }
+
+  // ── Overall verdict ──────────────────────────────────────────────────────
+  var verdict = '';
+  if (pct >= 80) {
+    verdict = 'STRONG — Recommend for next round. Strong overall performance.';
+  } else if (pct >= 65) {
+    verdict = 'GOOD — Proceed to interview. Adequate performance with some gaps to probe.';
+  } else if (pct >= 50) {
+    verdict = 'MODERATE — Use interview to assess whether experience compensates for gaps.';
+  } else {
+    verdict = 'BELOW THRESHOLD — Candidate may lack foundational PM knowledge.';
+  }
+
+  if (gapAreas.length > 0) {
+    verdict += '\nKey gaps to probe in interview: ' + gapAreas.join(', ') + '.';
+  }
+  if (strongAreas.length > 0) {
+    verdict += '\nStrong areas: ' + strongAreas.join(', ') + '.';
+  }
+
+  // ── Question-by-question detail ──────────────────────────────────────────
   var detail = '';
   for (var i = 0; i < state.qs.length; i++) {
     var q = state.qs[i];
-    detail += '\nQ' + (i+1) + ' [' + q.type.toUpperCase() + ']\n';
+    detail += '\nQ' + (i+1) + ' [' + q.type.toUpperCase() + '] [' + (q.comp || '') + ']\n';
     detail += '  Q: ' + q.q + '\n';
     if (q.type === 'single') {
       var ok = state.answers[i] === q.correct;
       var sel = state.answers[i] !== undefined ? LETTERS[state.answers[i]] + ': ' + q.opts[state.answers[i]] : 'Not answered';
       var best = LETTERS[q.correct] + ': ' + q.opts[q.correct];
-      detail += '  Selected: ' + sel + '\n  Correct: ' + best + '\n  Result: ' + (ok ? 'CORRECT' : 'WRONG') + '\n';
+      detail += '  Selected: ' + sel + '\n';
+      detail += '  Correct:  ' + best + '\n';
+      detail += '  Result:   ' + (ok ? 'CORRECT' : 'WRONG') + '\n';
     } else if (q.type === 'multi') {
       var selArr = Array.isArray(state.answers[i]) ? state.answers[i].map(function(x){return LETTERS[x]+': '+q.opts[x];}).join(' | ') : 'Not answered';
       var expArr = q.correct.map(function(x){return LETTERS[x]+': '+q.opts[x];}).join(' | ');
       var ok2 = Array.isArray(state.answers[i]) && state.answers[i].slice().sort().join(',') === q.correct.slice().sort().join(',');
-      detail += '  Selected: ' + selArr + '\n  Expected: ' + expArr + '\n  Result: ' + (ok2 ? 'CORRECT' : 'WRONG') + '\n';
+      detail += '  Selected: ' + selArr + '\n';
+      detail += '  Expected: ' + expArr + '\n';
+      detail += '  Result:   ' + (ok2 ? 'CORRECT' : 'WRONG') + '\n';
     } else if (q.type === 'open') {
-      detail += '  Response: ' + (state.answers[i] || '[No response]') + '\n';
+      detail += '  Response: ' + (state.answers[i] || '[No response given]') + '\n';
     } else {
-      detail += '  File: ' + (state.answers[i] || '[No file]') + '\n';
+      detail += '  File:     ' + (state.answers[i] || '[No file uploaded]') + '\n';
     }
   }
 
@@ -572,10 +636,10 @@ function finish() {
   document.getElementById('done-name').textContent = state.name;
   show('s-done');
 
-  sendEmail(scored, total, pct, timeStr, verdict, detail, fileNames);
+  sendEmail(scored, scoredTotal, pct, timeStr, verdict, compLines, detail, fileNames);
 }
 
-function sendEmail(scored, total, pct, timeStr, verdict, detail, fileNames) {
+function sendEmail(scored, scoredTotal, pct, timeStr, verdict, compLines, detail, fileNames) {
   var noteEl = document.getElementById('email-note');
   noteEl.className = 'email-note sending';
   noteEl.textContent = 'Submitting your responses...';
@@ -593,16 +657,17 @@ function sendEmail(scored, total, pct, timeStr, verdict, detail, fileNames) {
   window._ejs_ready = function() {
     emailjs.init({ publicKey: EJS_PUBLIC_KEY });
     emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
-      to_email: RECRUITER_EMAIL,
-      candidate_name: state.name,
-      candidate_email: state.email,
-      score: scored + '/' + total,
-      percentage: pct + '%',
-      time_taken: timeStr,
-      verdict: verdict,
-      files_uploaded: fileNames,
-      question_detail: detail.trim(),
-      submitted_at: now
+      to_email:         RECRUITER_EMAIL,
+      candidate_name:   state.name,
+      candidate_email:  state.email,
+      score:            scored + '/' + scoredTotal,
+      percentage:       pct + '%',
+      time_taken:       timeStr,
+      verdict:          verdict,
+      comp_breakdown:   compLines.trim(),
+      question_detail:  detail.trim(),
+      files_uploaded:   fileNames,
+      submitted_at:     now
     }).then(function() {
       noteEl.className = 'email-note sent';
       noteEl.textContent = 'Responses submitted successfully.';
@@ -620,7 +685,6 @@ function sendEmail(scored, total, pct, timeStr, verdict, detail, fileNames) {
 
 init();
 
-})();
-</script>
+})();</script>
 </body>
 </html>
