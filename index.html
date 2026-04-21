@@ -73,9 +73,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .upload-input{display:none}
 .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem}
 .skip-note{font-size:11px;color:var(--text3);font-style:italic}
-.btn-back{padding:11px 22px;font-size:14px;font-weight:600;font-family:var(--font);background:#fff;color:var(--text2);border:.5px solid var(--border-md);border-radius:var(--rs);cursor:pointer;letter-spacing:.01em;transition:background .15s,border-color .15s,transform .1s}
-.btn-back:hover{background:var(--surface2);border-color:var(--text3)}
-.btn-back:active{transform:scale(.98)}
+.btn{padding:11px 28px;font-size:14px;font-weight:600;font-family:var(--font);background:#27a4aa;color:#fff;border:none;border-radius:var(--rs);cursor:pointer;letter-spacing:.01em;transition:background .15s,transform .1s}
 .btn:hover{background:#1f8a8f}
 .btn:active{transform:scale(.98)}
 .btn:disabled{background:#ccc;cursor:not-allowed;transform:none}
@@ -155,7 +153,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     <p class="q-hint" id="q-hint"></p>
     <div id="q-body"></div>
     <div class="nav-row">
-      <button class="btn-back" id="q-back" style="display:none">&#x2190; Back</button>
+      <button class="btn" id="q-back" style="display:none">&#x2190; Back</button>
       <span class="skip-note" id="q-skip"></span>
       <button class="btn" id="q-next" disabled>Next &#x2192;</button>
     </div>
