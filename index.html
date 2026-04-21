@@ -573,14 +573,25 @@ function finish() {
   var gapAreas = [];
   var strongAreas = [];
 
+  function padR(str, len) {
+    str = String(str);
+    while (str.length < len) str += ' ';
+    return str;
+  }
+  function padL(str, len) {
+    str = String(str);
+    while (str.length < len) str = ' ' + str;
+    return str;
+  }
+
   for (var ci = 0; ci < compOrder.length; ci++) {
     var name = compOrder[ci];
     if (!comps[name]) continue;
     var d = comps[name];
     var cpct = Math.round(d.correct / d.total * 100);
-    var rating = cpct >= 80 ? 'Strong' : cpct >= 60 ? 'Adequate' : 'Gap';
-    var flag = cpct >= 80 ? '[STRONG]' : cpct >= 60 ? '[ADEQUATE]' : '[GAP]';
-    compLines += name + ': ' + d.correct + '/' + d.total + ' (' + cpct + '%) ' + flag + '\n';
+    var rating = cpct >= 80 ? 'STRONG' : cpct >= 60 ? 'ADEQUATE' : 'GAP';
+    var scoreStr = d.correct + '/' + d.total + ' (' + cpct + '%)';
+    compLines += padR(name, 42) + padL(scoreStr, 10) + '   ' + rating + '\n';
     if (cpct < 60) gapAreas.push(name);
     else if (cpct >= 80) strongAreas.push(name);
   }
